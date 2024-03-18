@@ -44,12 +44,24 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 */
 
 let list = [];
-console.log(list); 
+//console.log(list); 
 
-for(let i = 0; i <= 100;i++){
+for(let i = 0; i <= 100; i++){
     let arrayNumbers = (i + 1);  
     // console.log(i);
     list.push(arrayNumbers);
+}
+
+function generateUniqueRandomNumber(min, max,blacklist){
+    let check = false;
+    let randomNumber;
+
+    while (check === false){
+        randomNumber = getRndInteger (min,max);
+    } if (blacklist.includes(randomNumber) === false){
+        check = true;
+    }
+    return randomNumber;
 }
 
 // numeri random
