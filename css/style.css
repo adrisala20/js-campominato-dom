@@ -26,8 +26,15 @@ main {
     flex-wrap: wrap;
     cursor: crosshair;
 }
+span {
+    color: white;
+}
 
 .boxes.clicked{
     color: white;
-    font-weight: bold;
+    font-weight:bolder;
+    font-size: 1.5rem;
+}
+.boxes.clicked.blue {
+    background-color: blue;
 }

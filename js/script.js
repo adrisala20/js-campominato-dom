@@ -8,7 +8,7 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
     <span> numero </span> */
 
 document.querySelector('.btn').addEventListener ('click',function(){
-    console.log('clickPlay');
+    //console.log('clickPlay');
    clickPlay(100);
 })
 
@@ -45,6 +45,7 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 
 let list = [];
 //console.log(list); 
+let numberBombs;
 
 for(let i = 0; i <= 100; i++){
     let arrayNumbers = (i + 1);  
@@ -52,32 +53,25 @@ for(let i = 0; i <= 100; i++){
     list.push(arrayNumbers);
 }
 
+
+
 function generateUniqueRandomNumber(min, max,blacklist){
     let check = false;
     let randomNumber;
-
     while (check === false){
         randomNumber = getRndInteger (min,max);
+        
+        for(i = 0; i < 16 ; i++){
+            randomNumber.push(i);
+        }
     } if (blacklist.includes(randomNumber) === false){
         check = true;
     }
     return randomNumber;
 }
 
+
 // numeri random
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
-/*
-let isFound = false;
-let randomNumber ;
-
-while ( isFound === false){
-    randomNumber = getRandomInt(min,max);
-
-    if(blacklist.includes(randomNumber) ===false){
-        isFound = true; 
-    }
-    return randomNumber;
-}
-*/
