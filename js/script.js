@@ -13,6 +13,7 @@ const elLevel = document.getElementById('level');
 elLevel.addEventListener('change', play);
 let score = 0;
 const NUM_BOMBS = 16;
+let gameOver = false;
 
 //creo la funzione principale del gioco
 function play(){
@@ -25,19 +26,21 @@ function play(){
     let cellsNumber = setLevel (); // creo una funzione per il livello scelto dall'utente
 
     //numeri random dopo le celle perché mi serve il numero delle bombe
-    let bombList = generateBombs()
+    let bombList = generateBombs(cellsNumber);
+    console.log(bombList);
 
 
     cellsPerRow = Math.sqrt(cellsNumber);
 
+    const max_attempt = cellsNumber - NUM_BOMBS;
+
     //creo i quadrati (boxes)
     for(let i = 1; i <= cellsNumber ; i++){
-        let box = generateBoxes(cellsPerRow, i);
+        let box = generateBoxes(cellsPerRow, i, bombList,max_attempt );
         elBox.appendChild(box);
         console.log(box)
     }
 }
-
 // creo la funzione per ritornare il valore della select
 function setLevel(){
     let level = elLevel.value;
@@ -56,7 +59,6 @@ function setLevel(){
     }
     return cellsNumber;
 }
-
 /**
  * drawBox
  * funzione che crea elemento html div (boxes)
@@ -66,7 +68,7 @@ function setLevel(){
  * @returns 
  */
 
-function generateBoxes(dim, content){
+function generateBoxes(dim, content, bombs, maxscore){
     const newBox = document.createElement('div');
     newBox.classList.add('boxes');
     newBox.style.setProperty('--ms-box-dim', `calc(500px / ${dim})`);
@@ -75,24 +77,35 @@ function generateBoxes(dim, content){
     `;
 
     newBox.addEventListener('click', function(){
+      //  if(gameOver !== true){ (!gameOver)
+        if(gameOver) return ;
+        if(bombs.includes(content)){
+            newBox.classList.add('unsafe');
+            newBox.innerHTML = `
+            <i class="fa-solid fa-bomb" </i>
+            `;
+        } else {
         newBox.classList.add('safe', 'clicked');
         score++;
         console.log(score);
+        }
+    //}
     }, {once: true});
     return newBox;
 }
-
 //funzione
 function generateBombs(numCells){
     //NUM_BOMBS
     let bombsArray = [];
+    let counter=0;
 
-    while(bombsArray.length< NUM_BOMBS){
+    while(bombsArray.length< NUM_BOMBS && counter < 100){
         let bomb = getRndInteger(1 , numCells);
         if(bombsArray.includes(bomb)){
             bombsArray.push(bomb);
         }
-    } console.log(bombsArray);
+        counter++;
+    } 
     return bombsArray;
 }
 
