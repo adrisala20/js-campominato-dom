@@ -10,7 +10,8 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
     // creo la mia variabile prendendo l'id
 const elLevel = document.getElementById('level');
 
-//elLevel.addEventListener('change', play);
+elLevel.addEventListener('change', play);
+let score = 0;
 
 //creo la funzione principale del gioco
 function play(){
@@ -60,50 +61,29 @@ function setLevel(){
  * @returns 
  */
 
-function generateBox(dim, content){
+function generateBoxes(dim, content){
     const newBox = document.createElement('div');
     newBox.classList.add('boxes');
     newBox.style.setProperty('--ms-box-dim', `calc(500px / ${dim})`);
     newBox.innerHTML = `
-    <span> ${content} </span>
+    <span class='invisible'> ${content} </span>
     `;
-}
-
-
-
-
-
-
-
-
-
-/*document.querySelector('.btn').addEventListener ('click',function(){
-    //console.log('clickPlay');
-   clickPlay(100);
-})
-
-function clickPlay (numberBoxes){
-    const box = document.getElementById('boxWrapper');
-    console.log(box);
-    box.innerHTML = '';
-
-    for (let i = 0; i < numberBoxes ; i++){
-
-    const newBox = document.createElement('div');
-    newBox.classList.add('boxes');
 
     newBox.addEventListener('click', function(){
-        newBox.classList.add('clicked');
-    });
-
-    const spanContent = document.createElement('span');
-    spanContent.append(i + 1);
-
-    newBox.appendChild(spanContent);
-    box.appendChild(newBox);
+        newBox.classList.add('safe', 'clicked');
+        score++;
+        console.log(score);
+    }, {once: true});
+    return newBox;
 }
-}
-*/
+
+
+
+
+
+
+
+
 /*
 Il computer deve generare 16 numeri casuali: le bombe. 
 Attenzione: **nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali.
@@ -111,32 +91,6 @@ In seguito l'utente clicca su una cella: se il numero è presente nella lista de
 La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono bombe).
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 
-*/
-
-/*let list = [];
-console.log(list); 
-let numberBombs;
-
-for(let i = 0; i <= 100; i++){
-    let arrayNumbers = (i + 1);  
-    // console.log(i);
-    list.push(arrayNumbers);
-}
-
-function generateUniqueRandomNumber(min, max,arrayLength){
-    let check = false;
-    let randomNumber;
-    let blacklist = [];
-    console.log(blacklist);
-    while (blacklist.length <= arrayLength){
-        randomNumber = getRndInteger (min,max);
-        
-    } if (blacklist.includes(randomNumber) === false){
-        blacklist.push (randomNumber);
-        check = true;
-    }
-    return randomNumber;
-}
 */
 
 // numeri random

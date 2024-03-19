@@ -15,7 +15,6 @@ header {
 #boxWrapper {
     width: 500px;
     height: 500px;
-    border: 1px solid white;
     margin: 0 auto;
     display: flex;
     flex-flow: row wrap;
@@ -42,12 +41,12 @@ header {
     background-color: red;
     color: black;
 }
-/* .boxes.clicked{
+.boxes.clicked{
     color: white;
     font-weight:bolder;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .boxes.clicked.blue {
     background-color: blue;
-} */
+}
 
