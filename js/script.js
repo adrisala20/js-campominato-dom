@@ -12,6 +12,7 @@ const elLevel = document.getElementById('level');
 
 elLevel.addEventListener('change', play);
 let score = 0;
+const NUM_BOMBS = 16;
 
 //creo la funzione principale del gioco
 function play(){
@@ -22,6 +23,10 @@ function play(){
 
     let cellsPerRow ; //numero di celle che mi servono per lato ^2
     let cellsNumber = setLevel (); // creo una funzione per il livello scelto dall'utente
+
+    //numeri random dopo le celle perché mi serve il numero delle bombe
+    let bombList = generateBombs()
+
 
     cellsPerRow = Math.sqrt(cellsNumber);
 
@@ -77,7 +82,19 @@ function generateBoxes(dim, content){
     return newBox;
 }
 
+//funzione
+function generateBombs(numCells){
+    //NUM_BOMBS
+    let bombsArray = [];
 
+    while(bombsArray.length< NUM_BOMBS){
+        let bomb = getRndInteger(1 , numCells);
+        if(bombsArray.includes(bomb)){
+            bombsArray.push(bomb);
+        }
+    } console.log(bombsArray);
+    return bombsArray;
+}
 
 
 
