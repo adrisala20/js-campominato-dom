@@ -7,7 +7,77 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 /* <div class="boxes"></div>
     <span> numero </span> */
 
-document.querySelector('.btn').addEventListener ('click',function(){
+    // creo la mia variabile prendendo l'id
+const elLevel = document.getElementById('level');
+
+//elLevel.addEventListener('change', play);
+
+//creo la funzione principale del gioco
+function play(){
+
+    const elBox = document.getElementById('boxWrapper');
+    //azzero il box ogni volta che vene chiamata la funzione
+    elBox.innerHTML= '';
+
+    let cellsPerRow ; //numero di celle che mi servono per lato ^2
+    let cellsNumber = setLevel (); // creo una funzione per il livello scelto dall'utente
+
+    cellsPerRow = Math.sqrt(cellsNumber);
+
+    //creo i quadrati (boxes)
+    for(let i = 1; i <= cellsNumber ; i++){
+        let box = generateBoxes(cellsPerRow, i);
+        elBox.appendChild(box);
+        console.log(box)
+    }
+}
+
+// creo la funzione per ritornare il valore della select
+function setLevel(){
+    let level = elLevel.value;
+    console.log(level);
+    let cellsNumber;
+    switch (level){
+        case 'easy':
+            cellsNumber = 100;
+            break;
+        case 'medium':
+            cellsNumber = 81;
+            break;
+        case 'hard':
+            cellsNumber = 49;
+            break;
+    }
+    return cellsNumber;
+}
+
+/**
+ * drawBox
+ * funzione che crea elemento html div (boxes)
+ * aggiungere l'evento click ad ogni box
+ * @param {*} dim (dimensioni)
+ * @param {*} content (contenuto)
+ * @returns 
+ */
+
+function generateBox(dim, content){
+    const newBox = document.createElement('div');
+    newBox.classList.add('boxes');
+    newBox.style.setProperty('--ms-box-dim', `calc(500px / ${dim})`);
+    newBox.innerHTML = `
+    <span> ${content} </span>
+    `;
+}
+
+
+
+
+
+
+
+
+
+/*document.querySelector('.btn').addEventListener ('click',function(){
     //console.log('clickPlay');
    clickPlay(100);
 })
@@ -33,7 +103,7 @@ function clickPlay (numberBoxes){
     box.appendChild(newBox);
 }
 }
-
+*/
 /*
 Il computer deve generare 16 numeri casuali: le bombe. 
 Attenzione: **nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali.
@@ -43,8 +113,8 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 
 */
 
-let list = [];
-//console.log(list); 
+/*let list = [];
+console.log(list); 
 let numberBombs;
 
 for(let i = 0; i <= 100; i++){
@@ -53,23 +123,21 @@ for(let i = 0; i <= 100; i++){
     list.push(arrayNumbers);
 }
 
-
-
-function generateUniqueRandomNumber(min, max,blacklist){
+function generateUniqueRandomNumber(min, max,arrayLength){
     let check = false;
     let randomNumber;
-    while (check === false){
+    let blacklist = [];
+    console.log(blacklist);
+    while (blacklist.length <= arrayLength){
         randomNumber = getRndInteger (min,max);
         
-        for(i = 0; i < 16 ; i++){
-            randomNumber.push(i);
-        }
     } if (blacklist.includes(randomNumber) === false){
+        blacklist.push (randomNumber);
         check = true;
     }
     return randomNumber;
 }
-
+*/
 
 // numeri random
 function getRndInteger(min, max) {

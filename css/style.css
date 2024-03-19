@@ -1,40 +1,53 @@
+:root {
+    --ms-box-dim: calc(500px / 10);
+}
+
 body {
     background-color: black;
 }
 main {
     margin: 0 auto;
 }
+header {
+    height: 70px;
+}
 /* ******* contenitore boxWrapper ***********+ */
 #boxWrapper {
     width: 500px;
     height: 500px;
-    border: 2px solid white;
+    border: 1px solid white;
     margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
 }
 /*********** box small ********/
 
 .boxes {
-    width: calc(100% / 10);
-    height: calc(100% / 10);
-    border: 2px solid white;
+    width: var(--ms-box-dim);
+    height: var(--ms-box-dim);
+    border: 1px solid white;
+    color: white;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     cursor: crosshair;
 }
-span {
+
+.boxes.safe {
+    background-color: blue;
     color: white;
 }
-
-.boxes.clicked{
+.boxes.unsafe {
+    background-color: red;
+    color: black;
+}
+/* .boxes.clicked{
     color: white;
     font-weight:bolder;
     font-size: 1.5rem;
 }
 .boxes.clicked.blue {
     background-color: blue;
-}
+} */
+
